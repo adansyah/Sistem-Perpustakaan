@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('penulis');
             $table->string('penerbit');
             $table->integer('tahun');
-            $table->string('kategori');
+            $table->enum('kategori', ['fiksi', 'non'])->default('fiksi');
             $table->integer('jumlah_eksemplar')->default(1);
             $table->string('file')->nullable();
+            $table->enum('rating', ['1', '2', '3', '4', '5'])->default('3');
             $table->timestamps();
         });
     }

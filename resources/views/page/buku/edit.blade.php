@@ -80,15 +80,13 @@
                 <form action="{{ route('buku.update', $data->id) }}" method="POST" enctype="multipart/form-data"
                     class="p-6">
                     @csrf
-
+                    @method('PUT')
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Left Column -->
                         <div class="space-y-6">
-                            <!-- No Surat -->
 
 
-                            <!-- Nama Surat -->
                             <div>
                                 <label for="judul" class="block text-sm font-medium text-gray-300 mb-1">Judul
                                     <span class="text-rose-400">*</span></label>
@@ -100,7 +98,6 @@
                                 @enderror
                             </div>
 
-                            <!-- asal -->
                             <div>
                                 <label for="penulis" class="block text-sm font-medium text-gray-300 mb-1">Penulis <span
                                         class="text-rose-400">*</span></label>
@@ -136,18 +133,17 @@
 
                         <!-- Right Column -->
                         <div class="space-y-6">
-                            <!-- perihal -->
                             <div>
                                 <h2 class="block text-md font-medium text-gray-300 mb-1">Kategori Buku</h2>
-                                <select name="kategori" required class="w-full p-3 rounded bg-gray-800 text-white mb-4"
-                                    required>
+                                <select name="kategori" required
+                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200">
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="dongeng"
-                                        {{ old('kategori', $data->kategori) == 'dongeng' ? 'selected' : '' }}>
-                                        dongeng</option>
-                                    <option value="cerpen"
-                                        {{ old('kategori', $data->kategori) == 'cerpen' ? 'selected' : '' }}>
-                                        cerpen</option>
+                                    <option value="fiksi"
+                                        {{ old('kategori', $data->kategori) == 'fiksi' ? 'selected' : '' }}>Fiksi
+                                    </option>
+                                    <option value="non"
+                                        {{ old('kategori', $data->kategori) == 'non' ? 'selected' : '' }}>Non Fiksi
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -155,10 +151,22 @@
                                     class="block text-sm font-medium text-gray-300 mb-1">jumlah_eksemplar
                                     <span class="text-rose-400">*</span></label>
                                 <input type="number" id="jumlah_eksemplar" name="jumlah_eksemplar"
-                                    value="{{ $data->jumlah_eksemplar }}" required
+                                    value="{{ $data->jumlah_eksemplar }}" required min="0"
                                     class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                                     placeholder="Masukan jumlah_eksemplar">
                                 @error('jumlah_eksemplar')
+                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="rating" class="block text-sm font-medium text-gray-300 mb-1">rating
+                                    <span class="text-rose-400">*</span></label>
+                                <input type="number" id="rating" name="rating" value="{{ $data->rating }}"
+                                    required min="0" max="5"
+                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
+                                    placeholder="Rating 1-5">
+
+                                @error('rating')
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -193,12 +201,7 @@
                                 @enderror
                             </div>
 
-                            {{-- FILE URL --}}
-                            @php
-                                $fileUrl = filter_var($data->file, FILTER_VALIDATE_URL)
-                                    ? $data->file
-                                    : Storage::url($data->file);
-                            @endphp
+
 
 
                         </div>

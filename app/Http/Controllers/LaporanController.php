@@ -25,13 +25,33 @@ class LaporanController extends Controller
 
     public function laporanTerlambat()
     {
-        $today = now();
+        $dendaPerHari = 5000; // bisa diganti sesuai aturan
         $loans = Loan::with('anggota', 'Details.book')
             ->where('status', 'dikembalikan')
-            ->whereDate('tanggal_pinjam', '<', $today->subDays(7))
-            ->get();
+            ->get()
+            ->filter(function ($loan) {
+                $batas = \Carbon\Carbon::parse($loan->tanggal_pinjam)->addDays(7);
+                $tanggalKembali = \Carbon\Carbon::parse($loan->tanggal_kembali);
+
+                return $tanggalKembali->greaterThan($batas);
+            })
+            ->map(function ($loan) use ($dendaPerHari) {
+                $batas = \Carbon\Carbon::parse($loan->tanggal_pinjam)->addDays(7);
+                $tanggalKembali = \Carbon\Carbon::parse($loan->tanggal_kembali);
+
+                // hitung telat berapa hari
+                $loan->telat_hari = $tanggalKembali->diffInDays($batas);
+
+                // hitung denda
+                $loan->denda = $loan->telat_hari * $dendaPerHari;
+
+                return $loan;
+            });
+
         return view('page.laporan.terlambat', compact('loans'));
     }
+
+
 
     public function laporanBulanan()
     {

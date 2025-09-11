@@ -1,143 +1,84 @@
 @extends('layouts.app')
-
+@section('title', 'Laporan Perpustakaan')
 @section('content')
-    <div class="container">
-        <h1>Laporan Perpustakaan</h1>
+    <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Laporan Buku & Pinjaman</h1>
+                    <p class="text-gray-400">Kelola Laporan Perpustakaan</p>
+                </div>
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs mt-3" id="laporanTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#daftarBuku">Daftar Buku</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#sedangDipinjam">Buku Dipinjam</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#terlambat">Buku Terlambat</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#bulanan">Peminjaman Bulanan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tahunan">Peminjaman Tahunan</a>
-            </li>
-        </ul>
-
-        <!-- Content -->
-        <div class="tab-content mt-3">
-            <!-- Daftar Buku -->
-            <div class="tab-pane fade show active" id="daftarBuku">
-                <h3>Daftar Buku</h3>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Judul</th>
-                            <th>Penulis</th>
-                            <th>Jumlah Eksemplar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($daftarBuku as $buku)
-                            <tr>
-                                <td>{{ $buku->id }}</td>
-                                <td>{{ $buku->judul }}</td>
-                                <td>{{ $buku->penulis }}</td>
-                                <td>{{ $buku->jumlah_eksemplar }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
             </div>
-
-            <!-- Buku Dipinjam -->
-            <div class="tab-pane fade" id="sedangDipinjam">
-                <h3>Buku Sedang Dipinjam</h3>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID Peminjaman</th>
-                            <th>Nama Anggota</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($sedangDipinjam as $loan)
-                            <tr>
-                                <td>{{ $loan->id }}</td>
-                                <td>{{ $loan->anggota->nama }}</td>
-                                <td>{{ $loan->tanggal_pinjam }}</td>
-                                <td>{{ ucfirst($loan->status) }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">Tidak ada buku dipinjam</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+            <!-- Search & Filters -->
+            <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700/50 mb-8 shadow-lg">
+                <form action="" method="GET">
+                    <div class="flex flex-col md:flex-row items-end justify-between gap-4">
+                        <div class="flex gap-3">
+                            <a href="{{ route('laporan.buku') }}"
+                                class="bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-lg shadow-cyan-900/20">
+                                Daftar Buku
+                            </a>
+                            <a href="{{ route('laporan.dipinjam') }}"
+                                class="bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-lg shadow-cyan-900/20">
+                                Daftar Pinjaman
+                            </a>
+                            <a href="{{ route('laporan.terlambat') }}"
+                                class="bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-lg shadow-cyan-900/20">
+                                Buku Terlambat
+                            </a>
+                            <a href="{{ route('laporan.bulanan') }}"
+                                class="bg-amber-600 hover:bg-amber-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-lg shadow-cyan-900/20">
+                                Laporan Pinjaman Bulanan
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <!-- Buku Terlambat -->
-            <div class="tab-pane fade" id="terlambat">
-                <h3>Buku Terlambat</h3>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID Peminjaman</th>
-                            <th>Nama Anggota</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($terlambat as $loan)
-                            <tr>
-                                <td>{{ $loan->id }}</td>
-                                <td>{{ $loan->anggota->nama }}</td>
-                                <td>{{ $loan->tanggal_pinjam }}</td>
-                                <td>{{ $loan->tanggal_kembali ?? '-' }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">Tidak ada buku terlambat</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Peminjaman Bulanan -->
-            <div class="tab-pane fade" id="bulanan">
-                <h3>Peminjaman Bulan {{ now()->translatedFormat('F Y') }}</h3>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama Anggota</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($bulanan as $loan)
-                            <tr>
-                                <td>{{ $loan->id }}</td>
-                                <td>{{ $loan->anggota->nama }}</td>
-                                <td>{{ $loan->tanggal_pinjam }}</td>
-                                <td>{{ ucfirst($loan->status) }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">Tidak ada peminjaman bulan ini</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-
         </div>
     </div>
+    <style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(75, 85, 99, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 114, 128, 0.5);
+        }
+
+        /* Table styles */
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        /* Glow effects */
+        .bg-cyan-600\/20 {
+            box-shadow: 0 0 10px rgba(8, 145, 178, 0.1);
+        }
+
+        .bg-rose-600\/20 {
+            box-shadow: 0 0 10px rgba(225, 29, 72, 0.1);
+        }
+
+        /* Smooth transitions */
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+    </style>
 @endsection

@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Beranda')
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <!-- Dashboard Header -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-8">
             <div class="mb-4 md:mb-0">
-                <h1 class="text-3xl font-bold text-gray-100">Dashboard</h1>
+                <h1 class="text-3xl font-bold text-gray-100">Welcome</h1>
                 <p class="text-gray-400 mt-1">Selamat Datang {{ Auth::user()->name ?? 'User' }} di Perpustakaan SMPN 2
                     Lumbung</p>
             </div>
@@ -15,7 +15,6 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <!-- Total Products -->
             <div
                 class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl border border-gray-700/50 overflow-hidden relative group">
                 <div
@@ -25,7 +24,7 @@
                     <div class="flex justify-between items-center py-6">
                         <div>
                             <h2 class="text-gray-400 font-medium mb-1">Buku</h2>
-                            <p class="text-4xl font-bold text-white mb-3"></p>
+                            <p class="text-4xl font-bold text-white mb-3">{{ $buku }}</p>
                         </div>
                         <div class="p-3 rounded-lg bg-cyan-600/10 border border-cyan-600/20">
 
@@ -40,7 +39,6 @@
                 </div>
             </div>
 
-            <!-- Products in Stock -->
             <div
                 class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl border border-gray-700/50 overflow-hidden relative group">
                 <div
@@ -50,7 +48,7 @@
                     <div class="flex justify-between items-start py-6">
                         <div>
                             <h2 class="text-gray-400 font-medium mb-1">Pinjaman</h2>
-                            <p class="text-4xl font-bold text-white mb-3"></p>
+                            <p class="text-4xl font-bold text-white mb-3">{{ $loan }}</p>
                         </div>
                         <div class="p-3 rounded-lg bg-emerald-600/10 border border-emerald-600/20">
 
@@ -64,7 +62,6 @@
                 </div>
             </div>
 
-            <!-- Low Stock Products -->
             <div
                 class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl border border-gray-700/50 overflow-hidden relative group">
                 <div
@@ -74,7 +71,7 @@
                     <div class="flex justify-between items-center">
                         <div>
                             <h2 class="text-gray-400 font-medium mb-1">Anggota</h2>
-                            <p class="text-4xl font-bold text-white mb-3"></p>
+                            <p class="text-4xl font-bold text-white mb-3">{{ $member }}</p>
                             <div class="flex items-center text-sm">
 
                             </div>
@@ -91,7 +88,7 @@
             </div>
         </div>
 
-        <!-- Calendar and Time in Cambodia -->
+        <!-- Calendar and Time in Indonesia -->
         <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl border border-gray-700/50 p-6 mb-8">
             <h2 class="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20"
@@ -102,65 +99,19 @@
                 </svg>
                 Indonesia Kalender & Waktu
             </h2>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Calendar -->
                 <div class="bg-gray-900/70 rounded-xl border border-gray-700/50 p-5 shadow-inner">
                     <div class="text-center">
-                        <p class="font-bold mb-4 text-gray-200">April 2025</p>
-                        <div class="grid grid-cols-7 gap-1 text-xs">
-                            <div class="font-medium text-gray-400 p-2">Sun</div>
-                            <div class="font-medium text-gray-400 p-2">Mon</div>
-                            <div class="font-medium text-gray-400 p-2">Tue</div>
-                            <div class="font-medium text-gray-400 p-2">Wed</div>
-                            <div class="font-medium text-gray-400 p-2">Thu</div>
-                            <div class="font-medium text-gray-400 p-2">Fri</div>
-                            <div class="font-medium text-gray-400 p-2">Sat</div>
-
-                            <!-- Sample days (replace with dynamic calendar) -->
-                            <div class="p-2"></div>
-                            <div class="p-2"></div>
-                            <div class="p-2 text-gray-300">1</div>
-                            <div class="p-2 text-gray-300">2</div>
-                            <div class="p-2 text-gray-300">3</div>
-                            <div class="p-2 text-gray-300">4</div>
-                            <div class="p-2 text-gray-300">5</div>
-
-                            <div class="p-2 text-gray-300">6</div>
-                            <div class="p-2 text-gray-300">7</div>
-                            <div class="p-2 text-gray-300">8</div>
-                            <div class="p-2 text-gray-300">9</div>
-                            <div class="p-2 text-gray-300">10</div>
-                            <div class="p-2 text-gray-300">11</div>
-                            <div class="p-2 text-gray-300">12</div>
-
-                            <div class="p-2 text-gray-300">13</div>
-                            <div class="p-2 text-gray-300">14</div>
-                            <div class="p-2 text-gray-300">15</div>
-                            <div class="p-2 text-gray-300">16</div>
-                            <div class="p-2 text-gray-300">17</div>
-                            <div class="p-2 text-gray-300">18</div>
-                            <div class="p-2 text-gray-300">19</div>
-
-                            <div class="p-2 text-gray-300">20</div>
-                            <div class="p-2 text-gray-300">21</div>
-                            <div class="p-2 text-gray-300">22</div>
-                            <div class="p-2 text-gray-300">23</div>
-                            <div class="p-2 bg-cyan-600/20 rounded-full text-cyan-300 font-medium">24</div>
-                            <div class="p-2 text-gray-300">25</div>
-                            <div class="p-2 text-gray-300">26</div>
-
-                            <div class="p-2 text-gray-300">27</div>
-                            <div class="p-2 text-gray-300">28</div>
-                            <div class="p-2 text-gray-300">29</div>
-                            <div class="p-2 text-gray-300">30</div>
-                            <div class="p-2"></div>
-                            <div class="p-2"></div>
-                            <div class="p-2"></div>
+                        <p id="calendar-title" class="font-bold mb-4 text-gray-200"></p>
+                        <div class="grid grid-cols-7 gap-1 text-xs" id="calendar-days">
+                            <!-- Calendar will be generated by JS -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Current Time in Cambodia -->
+                <!-- Current Time in Indonesia -->
                 <div
                     class="bg-gray-900/70 rounded-xl border border-gray-700/50 p-5 shadow-inner flex items-center justify-center">
                     <div class="text-center">
@@ -175,34 +126,87 @@
             </div>
         </div>
 
-
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function updateIndonesiaTime() {
                 const now = new Date();
-                // Cambodia is UTC+7 (no DST)
-                const IndonesiaTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-                const hours = IndonesiaTime.getUTCHours() % 24;
-                const minutes = String(IndonesiaTime.getUTCMinutes()).padStart(2, '0');
-                const seconds = String(IndonesiaTime.getUTCSeconds()).padStart(2, '0');
-                const ampm = IndonesiaTime.getUTCHours() >= 24 ? 'WIB' : 'WIB';
-                const day = IndonesiaTime.getUTCDate();
-                const month = IndonesiaTime.toLocaleString('ID', {
-                    month: 'long'
-                });
-                const year = IndonesiaTime.getUTCFullYear();
-                const weekday = IndonesiaTime.toLocaleString('ID', {
-                    weekday: 'long'
+                const options = {
+                    timeZone: 'Asia/Jakarta'
+                };
+
+                const timeString = now.toLocaleTimeString('id-ID', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    ...options
                 });
 
-                document.getElementById('IndonesiaTime').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-                document.getElementById('IndonesiaDate').textContent = `${weekday}, ${day} ${month}, ${year}`;
+                const dateString = now.toLocaleDateString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    ...options
+                });
+
+                document.getElementById('IndonesiaTime').textContent = timeString + " WIB";
+                document.getElementById('IndonesiaDate').textContent = dateString;
+            }
+
+            function generateCalendar() {
+                const now = new Date();
+                const options = {
+                    timeZone: 'Asia/Jakarta'
+                };
+                const today = new Date(now.toLocaleString("en-US", {
+                    timeZone: "Asia/Jakarta"
+                }));
+
+                const year = today.getFullYear();
+                const month = today.getMonth(); // 0 = Jan
+                const firstDay = new Date(year, month, 1).getDay(); // index hari pertama
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                // Set judul kalender
+                const monthName = today.toLocaleString('id-ID', {
+                    month: 'long'
+                });
+                document.getElementById('calendar-title').textContent = `${monthName} ${year}`;
+
+                // Render nama hari
+                const daysContainer = document.getElementById('calendar-days');
+                daysContainer.innerHTML = `
+                <div class="font-medium text-gray-400 p-2">Min</div>
+                <div class="font-medium text-gray-400 p-2">Sen</div>
+                <div class="font-medium text-gray-400 p-2">Sel</div>
+                <div class="font-medium text-gray-400 p-2">Rab</div>
+                <div class="font-medium text-gray-400 p-2">Kam</div>
+                <div class="font-medium text-gray-400 p-2">Jum</div>
+                <div class="font-medium text-gray-400 p-2">Sab</div>
+            `;
+
+                // Kosong di awal bulan
+                for (let i = 0; i < firstDay; i++) {
+                    daysContainer.innerHTML += `<div class="p-2"></div>`;
+                }
+
+                // Isi tanggal
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const isToday = d === today.getDate();
+                    daysContainer.innerHTML += `
+                    <div class="p-2 text-gray-300 ${isToday ? 'bg-cyan-600/20 rounded-full text-cyan-300 font-medium' : ''}">
+                        ${d}
+                    </div>
+                `;
+                }
             }
 
             updateIndonesiaTime();
             setInterval(updateIndonesiaTime, 1000);
+
+            generateCalendar();
         });
     </script>
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Buku')
+@section('title', 'Buku')
 
 @section('content')
     <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
@@ -17,7 +17,7 @@
                             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                             clip-rule="evenodd" />
                     </svg>
-                    Add Buku
+                    Buku
                 </a>
             </div>
 
@@ -78,19 +78,20 @@
                 </div>
             @endif
 
-            <!-- Surat Table -->
+            <!--  Table -->
             <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl mb-8">
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead class="">
                             <tr class="bg-gray-900/70 text-gray-400 text-sm text-center font-medium">
                                 <th class="py-3 px-4">No</th>
-                                <th class="py-3 px-4">File</th>
                                 <th class="py-3 px-4">Judul</th>
                                 <th class="py-3 px-4">Penulis</th>
                                 <th class="py-3 px-4">Penerbit</th>
                                 <th class="py-3 px-4">Tahun</th>
                                 <th class="py-3 px-4">Kategori</th>
+                                <th class="py-3 px-4">File</th>
+                                <th class="py-3 px-4">Rating</th>
                                 <th class="py-3 px-4">Action</th>
 
                             </tr>
@@ -111,7 +112,11 @@
                                     <td class="py-3 px-4 text-gray-300">
                                         {{ $item->tahun }}</td>
                                     <td class="py-3 px-4 text-gray-300">
-                                        {{ $item->kategori }}
+                                        @if ($item->kategori == 'fiksi')
+                                            Fiksi
+                                        @elseif ($item->kategori == 'non')
+                                            Non Fiksi
+                                        @endif
                                     </td>
                                     <td class="py-3 px-4">
                                         <a href="{{ asset('storage/' . $item->file) }}"
@@ -119,9 +124,18 @@
                                             Lihat File
                                         </a>
                                     </td>
+                                    <td class="py-5 px-4 flex items-center gap-1 justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            class="h-5 w-5 text-amber-300" stroke-width="1.5" stroke="currentColor"
+                                            class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                                        </svg>
+                                        {{ $item->rating }}
+                                    </td>
 
                                     <td class="py-3 px-4">
-                                        <div class="flex gap-2">
+                                        <div class="flex gap-2 justify-center">
 
                                             <a href="{{ route('buku.edit', $item->id) }}"
                                                 class="p-2 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-400 hover:text-cyan-300 rounded-lg transition-colors"
@@ -140,8 +154,8 @@
                                                 <button type="submit"
                                                     class="p-2 bg-rose-600/20 hover:bg-rose-600/40 text-rose-400 hover:text-rose-300 rounded-lg transition-colors"
                                                     title="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -160,9 +174,9 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                                             </svg>
-                                            <p class="text-lg">Belum ada surat masuk</p>
+                                            <p class="text-lg">Belum ada Buku</p>
                                             <p class="text-sm text-gray-600 mt-1">Try adjusting your search criteria or add
-                                                a new Surat</p>
+                                                a new Book</p>
                                         </div>
                                     </td>
                                 </tr>

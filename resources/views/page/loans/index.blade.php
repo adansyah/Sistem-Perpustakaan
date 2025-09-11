@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Anggota')
+@section('title', 'Data Pinjaman')
 
 @section('content')
     <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
@@ -17,7 +17,7 @@
                             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                             clip-rule="evenodd" />
                     </svg>
-                    Add Pinjaman
+                    Pinjaman
                 </a>
             </div>
 
@@ -47,7 +47,7 @@
                 </div>
             @endif
 
-            <!-- Surat Table -->
+            <!-- Table -->
             <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 overflow-hidden shadow-xl mb-8">
                 <div class="overflow-x-auto">
                     <table class="w-full">
@@ -69,12 +69,24 @@
                                         {{ $loop->iteration }}
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">{{ $item->anggota->nama }}</td>
-                                    <td class="py-3 px-4 text-gray-200 font-medium">{{ $item->tanggal_pinjam }}</td>
-                                    <td class="py-3 px-4">
-                                        {{ $item->tanggal_kembali }}
+                                    <td class="py-3 px-4 text-gray-200 font-medium">
+                                        {{ $item->tanggal_pinjam ? \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
                                     </td>
                                     <td class="py-3 px-4">
-                                        {{ ucfirst($item->status) }}
+                                        {{ $item->tanggal_kembali ? \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('d F Y') : '-' }}
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        @if (ucfirst($item->status === 'dipinjam'))
+                                            <span
+                                                class="px-2.5 py-1 bg-amber-500/50 text-gray-300 rounded-full text-xs font-medium">
+                                                {{ ucfirst($item->status) }}
+                                            </span>
+                                        @elseif (ucfirst($item->status === 'dikembalikan'))
+                                            <span
+                                                class="px-2.5 py-1 bg-green-500/50 text-gray-300 rounded-full text-xs font-medium">
+                                                {{ ucfirst($item->status) }}
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="p-2 flex gap-2">
                                         <a href="{{ route('loans.show', $item->id) }}"
@@ -133,14 +145,17 @@
                                 <tr>
                                     <td colspan="10" class="py-8 text-center text-gray-500">
                                         <div class="flex flex-col items-center justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600 mb-4"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                class="h-12 w-12 text-gray-600 mb-4" stroke-width="1.5"
+                                                stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                                             </svg>
-                                            <p class="text-lg">Belum ada surat masuk</p>
+
+                                            <p class="text-lg">Belum ada Transaksi</p>
                                             <p class="text-sm text-gray-600 mt-1">Try adjusting your search criteria or add
-                                                a new Surat</p>
+                                                a new transaction</p>
                                         </div>
                                     </td>
                                 </tr>

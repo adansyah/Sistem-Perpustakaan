@@ -83,20 +83,8 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Left Column -->
                         <div class="space-y-6">
-                            <!-- No Surat -->
-                            {{-- <div>
-                                <label for="no_surat" class="block text-sm font-medium text-gray-300 mb-1">No Surat
-                                    <span class="text-rose-400">*</span></label>
-                                <input type="text" id="no_surat" name="no_surat" value="{{ old('no_surat', $nosurat) }}"
-                                    required
-                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                    placeholder="Masukan No Surat" autofocus readonly>
-                                @error('no_surat')
-                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
-                                @enderror
-                            </div> --}}
 
-                            <!-- Nama Surat -->
+
                             <div>
                                 <label for="judul" class="block text-sm font-medium text-gray-300 mb-1">Judul
                                     <span class="text-rose-400">*</span></label>
@@ -108,7 +96,6 @@
                                 @enderror
                             </div>
 
-                            <!-- asal -->
                             <div>
                                 <label for="penulis" class="block text-sm font-medium text-gray-300 mb-1">Penulis <span
                                         class="text-rose-400">*</span></label>
@@ -144,18 +131,15 @@
 
                         <!-- Right Column -->
                         <div class="space-y-6">
-                            <!-- perihal -->
                             <div>
                                 <h2 class="block text-md font-medium text-gray-300 mb-1">Kategori Buku</h2>
                                 <select name="kategori" required class="w-full p-3 rounded bg-gray-800 text-white mb-4"
                                     required>
                                     <option value="">-- Pilih Kategori --</option>
-                                    {{-- <option value="proses" {{ old('status', $data->status) == 'proses' ? 'selected' : '' }}>
-                            proses</option> --}}
-                                    <option value="dongeng">
-                                        Dongeng</option>
-                                    <option value="cerpen">
-                                        Cerpen</option>
+                                    <option value="fiksi">
+                                        Fiksi</option>
+                                    <option value="non">
+                                        Non Fiksi</option>
                                 </select>
                             </div>
                             <div>
@@ -163,10 +147,23 @@
                                     class="block text-sm font-medium text-gray-300 mb-1">jumlah_eksemplar
                                     <span class="text-rose-400">*</span></label>
                                 <input type="number" id="jumlah_eksemplar" name="jumlah_eksemplar"
-                                    value="{{ old('jumlah_eksemplar') }}" required
+                                    value="{{ old('jumlah_eksemplar') }}" required min="0"
                                     class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                    placeholder="Masukan jumlah_eksemplar">
+                                    placeholder="Masukan jumlah eksemplar">
+
                                 @error('jumlah_eksemplar')
+                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="rating" class="block text-sm font-medium text-gray-300 mb-1">rating
+                                    <span class="text-rose-400">*</span></label>
+                                <input type="number" id="rating" name="rating" value="{{ old('rating') }}"
+                                    required min="0" max="5"
+                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
+                                    placeholder="Rating 1-5">
+
+                                @error('rating')
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>

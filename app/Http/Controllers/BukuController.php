@@ -53,6 +53,7 @@ class BukuController extends Controller
                 'penerbit'    => $validated['penerbit'],
                 'tahun'  => $validated['tahun'],
                 'kategori'       => $validated['kategori'],
+                'rating'       => $validated['rating'],
                 'jumlah_eksemplar' => $validated['jumlah_eksemplar'],
                 'file'         => $filePath ?? null,
 
@@ -70,18 +71,15 @@ class BukuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        $data = Book::findOrFail($id);
-        return view('page.buku.edit', compact('data'));
-    }
+    public function show($id) {}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data = Book::findOrFail($id);
+        return view('page.buku.edit', compact('data'));
     }
 
     /**

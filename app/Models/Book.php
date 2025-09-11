@@ -14,9 +14,9 @@ class Book extends Model
         'kategori',
         'jumlah_eksemplar',
         'file',
+        'rating'
     ];
 
-    // Relasi ke LoanDetails
     public function loanDetails()
     {
         return $this->hasMany(LoanDetail::class);

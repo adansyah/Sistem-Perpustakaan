@@ -20,16 +20,13 @@ class Loan extends Model
         return $this->belongsTo(Anggota::class);
     }
 
-    // Relasi ke Admin (User)
 
 
-    // Relasi ke LoanDetails
     public function Details()
     {
         return $this->hasMany(LoanDetail::class);
     }
 
-    // Relasi ke Returns
     public function returnBook()
     {
         return $this->hasOne(ReturnBook::class, 'loan_id');

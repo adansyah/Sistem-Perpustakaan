@@ -51,7 +51,6 @@ class LoanController extends Controller
                     'jumlah'  => $request->jumlah[$i],
                 ]);
 
-                // update stok buku
                 $book = Book::find($bookId);
                 $book->jumlah_eksemplar -= $request->jumlah[$i];
                 $book->save();
@@ -84,29 +83,23 @@ class LoanController extends Controller
             return back()->with('error', 'Buku sudah dikembalikan.');
         }
 
-        // Tentukan tanggal kembali hari ini
         $tanggalKembali = now();
 
-        // Aturan: peminjaman maksimal 7 hari
         $batasWaktu = \Carbon\Carbon::parse($loan->tanggal_pinjam)->addDays(7);
 
-        // Hitung keterlambatan
         $terlambat = $tanggalKembali->gt($batasWaktu)
             ? $tanggalKembali->diffInDays($batasWaktu)
             : 0;
 
-        // Hitung denda (misalnya Rp 2000 per hari)
-        $dendaPerHari = 2000;
+        $dendaPerHari = 5000;
         $denda = $terlambat * $dendaPerHari;
 
-        // Update loan
         $loan->update([
             'status' => 'dikembalikan',
             'tanggal_kembali' => $tanggalKembali,
             'denda' => $denda,
         ]);
 
-        // kembalikan stok buku
         foreach ($loan->Details as $detail) {
             $detail->book->jumlah_eksemplar += $detail->jumlah;
             $detail->book->save();

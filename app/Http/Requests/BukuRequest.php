@@ -14,9 +14,10 @@ class BukuRequest extends FormRequest
             'penulis' => 'required|max:255',
             'penerbit' => 'required',
             'tahun' => 'required',
-            'kategori' => 'required',
-            'jumlah_eksemplar' => 'required',
+            'kategori' => 'required|in:fiksi,non',
+            'jumlah_eksemplar' => 'required|min:0',
             'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
+            'rating' => 'required|in:1,2,3,4,5',
         ];
     }
 }

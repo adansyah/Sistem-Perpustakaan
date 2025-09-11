@@ -12,13 +12,11 @@ class LoanDetail extends Model
         'jumlah'
     ];
 
-    // Relasi ke Loan
     public function loan()
     {
         return $this->belongsTo(Loan::class);
     }
 
-    // Relasi ke Book
     public function book()
     {
         return $this->belongsTo(Book::class);

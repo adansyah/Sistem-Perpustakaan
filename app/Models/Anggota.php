@@ -14,7 +14,6 @@ class Anggota extends Model
         'no_telp'
     ];
 
-    // Relasi ke Loans
     public function loans()
     {
         return $this->hasMany(Loan::class);

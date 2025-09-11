@@ -83,9 +83,6 @@
                     <div class="grid  gap-6">
                         <!-- Left Column -->
                         <div class="space-y-6">
-
-
-                            <!-- Nama Surat -->
                             <div>
                                 <label for="nama" class="block text-sm font-medium text-gray-300 mb-1">nama
                                     <span class="text-rose-400">*</span></label>
@@ -100,7 +97,6 @@
                                 @enderror
                             </div>
 
-                            <!-- asal -->
                             <div>
                                 <label for="tanggal_pinjam"
                                     class="block text-sm font-medium text-gray-300 mb-1">tanggal_pinjam <span
@@ -126,7 +122,6 @@
                                 @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-4">
-                                <!-- tgl_surat -->
                                 <div>
                                     <label for="tgl_surat" class="block text-sm font-medium text-gray-300 mb-1">Tanggal
                                         Surat
@@ -141,7 +136,6 @@
 
                                 </div>
 
-                                <!-- tgl_diterima -->
                                 <div>
                                     <label for="jumlah" class="block text-sm font-medium text-gray-300 mb-1">jumlah <span
                                             class="text-rose-400">*</span></label>

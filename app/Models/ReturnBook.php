@@ -12,7 +12,6 @@ class ReturnBook extends Model
         'denda',
     ];
 
-    // Relasi ke Loan
     public function loan()
     {
         return $this->belongsTo(Loan::class);

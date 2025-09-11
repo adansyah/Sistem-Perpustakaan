@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMPN 2 Lumbung | Perpus</title>
+    <title>@yield('title') | SMPN 2 Lumbung</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('logo.png') }}" type="image/x-icon">
     <!-- Google Fonts -->
@@ -134,7 +134,7 @@
             <div class="flex items-center h-16 px-4 border-b border-sidebar-border">
                 <div class="flex items-center">
                     <img src="{{ asset('logo.png') }}" alt="" class="rounded-full w-9 ">
-                    <h1 class="ml-3 text-xl font-bold sidebar-logo-text">SMPN 2 Lumbung</h1>
+                    <h1 class="ml-3 text-md font-bold sidebar-logo-text">SMPN 2 Lumbung</h1>
                 </div>
                 <button id="sidebar-toggle"
                     class="ml-auto text-sidebar-foreground hover:text-sidebar-accent transition-colors">
@@ -149,7 +149,7 @@
             <div class="py-4 flex flex-col h-[calc(100%-4rem)]">
                 <!-- Main Navigation -->
                 <div class="px-3 space-y-1">
-                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Main</div>
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Menu</div>
 
                     <!-- Dashboard -->
                     <a href="/dashboard"
@@ -164,7 +164,7 @@
                         class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('buku') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors"
                         aria-label="Slide">
                         <i class="fas fa-book w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Data Buku</span>
+                        <span class="ml-3 sidebar-text"> Buku</span>
                     </a>
 
                     <!-- Products -->
@@ -188,18 +188,14 @@
 
                 <!-- Settings Section -->
                 <div class="px-3 mt-6 space-y-1">
-                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Settings
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Laporan
                     </div>
                     <a href="{{ route('laporan.index') }}"
                         class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('laporan') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
                         <i class="fas fa-list w-5 h-5"></i>
                         <span class="ml-3 sidebar-text">Laporan</span>
                     </a>
-                    {{-- <a href="/profile"
-                        class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('profile') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
-                        <i class="fas fa-user-circle w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Profile</span>
-                    </a> --}}
+
                 </div>
 
                 <!-- User Profile and Logout -->
@@ -246,11 +242,7 @@
                 <!-- Right side navigation items -->
                 <div class="flex items-center space-x-4">
                     <!-- Notifications -->
-                    <button
-                        class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 relative">
-                        <i class="fas fa-bell text-xl"></i>
-                        <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
-                    </button>
+
 
                     <!-- Theme Toggle -->
                     <button id="theme-toggle"

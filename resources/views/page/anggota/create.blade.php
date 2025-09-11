@@ -85,7 +85,6 @@
                         <div class="space-y-6">
 
 
-                            <!-- Nama Surat -->
                             <div>
                                 <label for="nama" class="block text-sm font-medium text-gray-300 mb-1">nama
                                     <span class="text-rose-400">*</span></label>
@@ -97,7 +96,6 @@
                                 @enderror
                             </div>
 
-                            <!-- asal -->
                             <div>
                                 <label for="alamat" class="block text-sm font-medium text-gray-300 mb-1">alamat <span
                                         class="text-rose-400">*</span></label>
