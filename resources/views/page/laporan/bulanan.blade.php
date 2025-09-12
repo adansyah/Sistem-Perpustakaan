@@ -10,6 +10,26 @@
                         {{ now()->translatedFormat('F Y') }}</h1>
                     <p class="text-gray-400">Kelola Laporan Perpustakaan</p>
                 </div>
+                <div class="flex gap-3">
+                    <a href="{{ route('laporan.bulanan.excel') }}"
+                        class="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Excel
+                    </a>
+                    <a href="{{ route('laporan.bulanan.pdf') }}"
+                        class="mt-4 md:mt-0 bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
 
             </div>
             <!-- Search & Filters -->
@@ -55,47 +75,29 @@
                         </thead>
                         <tbody class="divide-y divide-gray-800/50">
                             @forelse ($loans as $loan)
-                                @forelse ($loans as $item)
-                                    <tr class="hover:bg-gray-700/30 transition-colors duration-150 text-center text-sm">
-                                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
-                                        <td class="py-3 px-4 text-gray-300">{{ $loan->anggota->nama }}</td>
-                                        <td class="py-3 px-4 text-gray-200">
-                                            {{ $loan->tanggal_pinjam ? \Carbon\Carbon::parse($loan->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
-                                        </td>
-                                        <td class="py-3 px-4 text-gray-200">
-                                            {{ $loan->tanggal_kembali ? \Carbon\Carbon::parse($loan->tanggal_kembali)->translatedFormat('d F Y') : '-' }}
-                                        </td>
-                                        <td class="py-3 px-4">
-                                            @if ($item->status === 'dipinjam')
-                                                <span
-                                                    class="px-2.5 py-1 bg-amber-500/50 text-gray-300 rounded-full text-xs font-medium">
-                                                    {{ $item->status }}
-                                                </span>
-                                            @elseif ($item->status === 'dikembalikan')
-                                                <span
-                                                    class="px-2.5 py-1 bg-green-500/50 text-gray-300 rounded-full text-xs font-medium">
-                                                    {{ $item->status }}
-                                                </span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8" class="py-8 text-center text-gray-500">
-                                            <div class="flex flex-col items-center justify-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600 mb-4"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                                                </svg>
-                                                <p class="text-lg">Belum ada laporan Pinjaman</p>
-                                                <p class="text-sm text-gray-600 mt-1">Silakan tambah data atau ubah filter
-                                                    pencarian.</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-
+                                <tr class="hover:bg-gray-700/30 transition-colors duration-150 text-center text-sm">
+                                    <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                                    <td class="py-3 px-4 text-gray-300">{{ $loan->anggota->nama }}</td>
+                                    <td class="py-3 px-4 text-gray-200">
+                                        {{ $loan->tanggal_pinjam ? \Carbon\Carbon::parse($loan->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
+                                    </td>
+                                    <td class="py-3 px-4 text-gray-200">
+                                        {{ $loan->tanggal_kembali ? \Carbon\Carbon::parse($loan->tanggal_kembali)->translatedFormat('d F Y') : '-' }}
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        @if ($loan->status === 'dipinjam')
+                                            <span
+                                                class="px-2.5 py-1 bg-amber-500/50 text-gray-300 rounded-full text-xs font-medium">
+                                                {{ $loan->status }}
+                                            </span>
+                                        @elseif ($loan->status === 'dikembalikan')
+                                            <span
+                                                class="px-2.5 py-1 bg-green-500/50 text-gray-300 rounded-full text-xs font-medium">
+                                                {{ $loan->status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                </tr>
                             @empty
                                 <tr>
                                     <td colspan="8" class="py-8 text-center text-gray-500">
@@ -113,6 +115,7 @@
                                 </tr>
                             @endforelse
                         </tbody>
+
 
 
                     </table>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
+        'induk',
         'judul',
         'penulis',
         'penerbit',
@@ -14,7 +15,8 @@ class Book extends Model
         'kategori',
         'jumlah_eksemplar',
         'file',
-        'rating'
+        'rating',
+        'tgl_masuk'
     ];
 
     public function loanDetails()

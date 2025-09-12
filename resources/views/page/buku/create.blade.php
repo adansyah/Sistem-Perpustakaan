@@ -86,6 +86,17 @@
 
 
                             <div>
+                                <label for="induk" class="block text-sm font-medium text-gray-300 mb-1">No Induk
+                                    <span class="text-rose-400">*</span></label>
+                                <input type="number" id="induk" name="induk" value="{{ old('induk') }}" required
+                                    oninput="if(this.value.length > 6) this.value = this.value.slice(0,6);"
+                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
+                                    placeholder="Masukan induk">
+                                @error('induk')
+                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
                                 <label for="judul" class="block text-sm font-medium text-gray-300 mb-1">Judul
                                     <span class="text-rose-400">*</span></label>
                                 <input type="text" id="judul" name="judul" value="{{ old('judul') }}" required
@@ -119,10 +130,22 @@
                             <div>
                                 <label for="tahun" class="block text-sm font-medium text-gray-300 mb-1">Tahun <span
                                         class="text-rose-400">*</span></label>
-                                <input type="number" id="tahun" name="tahun" value="{{ old('tahun') }}" required
+                                <input type="number" id="tahun" name="tahun" value="{{ old('tahun') }}"
+                                    required
                                     class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                                     placeholder="tahun ">
                                 @error('tahun')
+                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="tgl_masuk" class="block text-sm font-medium text-gray-300 mb-1">Tanggal Masuk
+                                    <span class="text-rose-400">*</span></label>
+                                <input type="date" id="tgl_masuk" name="tgl_masuk" value="{{ old('tgl_masuk') }}"
+                                    required
+                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
+                                    placeholder="tgl_masuk ">
+                                @error('tgl_masuk')
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>

@@ -9,7 +9,26 @@
                     <h1 class="text-3xl font-bold text-white mb-2">Laporan Daftar Buku</h1>
                     <p class="text-gray-400">Kelola Laporan Perpustakaan</p>
                 </div>
-
+                <div class="flex gap-3">
+                    <a href="{{ route('laporan.buku.excel') }}"
+                        class="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Excel
+                    </a>
+                    <a href="{{ route('laporan.buku.pdf') }}"
+                        class="mt-4 md:mt-0 bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
             </div>
             <!-- Search & Filters -->
             <div class="bg-gray-800/50 rounded-xl p-5 border border-gray-700/50 mb-8 shadow-lg">
@@ -32,6 +51,7 @@
                                 class="bg-amber-600 hover:bg-amber-700 text-white font-medium py-2.5 px-5 rounded-lg transition-all duration-200 shadow-lg shadow-cyan-900/20">
                                 Laporan Pinjaman Bulanan
                             </a>
+
                         </div>
                     </div>
                 </form>
@@ -44,6 +64,7 @@
                         <thead class="">
                             <tr class="bg-gray-900/70 text-gray-400 text-sm text-center font-medium">
                                 <th class="py-3 px-4">No</th>
+                                <th class="py-3 px-4">No Induk</th>
                                 <th class="py-3 px-4">Judul</th>
                                 <th class="py-3 px-4">Penulis</th>
                                 <th class="py-3 px-4">Penerbit</th>
@@ -56,10 +77,11 @@
                             @forelse ($buku as  $item)
                                 <tr class="hover:bg-gray-700/30 transition-colors duration-150 text-center text-sm">
                                     <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                                    <td class="py-3 px-4 text-gray-300 font-medium">{{ $item->induk }}</td>
                                     <td class="py-3 px-4 text-gray-300">{{ $item->judul }}</td>
-                                    <td class="py-3 px-4 text-gray-200 font-medium"> {{ $item->penulis }}</td>
-                                    <td class="py-3 px-4 text-gray-200 font-medium"> {{ $item->penerbit }}</td>
-                                    <td class="py-3 px-4 text-gray-200 font-medium"> {{ $item->tahun }}</td>
+                                    <td class="py-3 px-4 text-gray-200"> {{ $item->penulis }}</td>
+                                    <td class="py-3 px-4 text-gray-200"> {{ $item->penerbit }}</td>
+                                    <td class="py-3 px-4 text-gray-200"> {{ $item->tahun }}</td>
 
                                 </tr>
                             @empty

@@ -85,10 +85,12 @@
                         <thead class="">
                             <tr class="bg-gray-900/70 text-gray-400 text-sm text-center font-medium">
                                 <th class="py-3 px-4">No</th>
+                                <th class="py-3 px-4">No Induk</th>
                                 <th class="py-3 px-4">Judul</th>
                                 <th class="py-3 px-4">Penulis</th>
                                 <th class="py-3 px-4">Penerbit</th>
                                 <th class="py-3 px-4">Tahun</th>
+                                <th class="py-3 px-4">Tanggal Masuk</th>
                                 <th class="py-3 px-4">Kategori</th>
                                 <th class="py-3 px-4">File</th>
                                 <th class="py-3 px-4">Rating</th>
@@ -102,7 +104,8 @@
                                     <td class="py-3 px-4">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="py-3 px-4 text-gray-200 font-medium">{{ $item->judul }}</td>
+                                    <td class="py-3 px-4 text-gray-200 font-medium">{{ $item->induk }}</td>
+                                    <td class="py-3 px-4 text-gray-200 ">{{ $item->judul }}</td>
                                     <td class="py-3 px-4">
                                         {{ $item->penulis }}
                                     </td>
@@ -111,6 +114,9 @@
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">
                                         {{ $item->tahun }}</td>
+                                    <td class="py-3 px-4 text-gray-200">
+                                        {{ $item->tgl_masuk ? \Carbon\Carbon::parse($item->tgl_masuk)->translatedFormat('d F Y') : '-' }}
+                                    </td>
                                     <td class="py-3 px-4 text-gray-300">
                                         @if ($item->kategori == 'fiksi')
                                             Fiksi

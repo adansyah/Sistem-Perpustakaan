@@ -10,10 +10,12 @@ class BukuRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'induk' => 'required|digits:6',
             'judul' => 'required',
             'penulis' => 'required|max:255',
             'penerbit' => 'required',
             'tahun' => 'required',
+            'tgl_masuk' => 'required',
             'kategori' => 'required|in:fiksi,non',
             'jumlah_eksemplar' => 'required|min:0',
             'file' => 'nullable|mimes:pdf,doc,docx|max:2048',

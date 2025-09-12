@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             'tahun' => 2024,
             'kategori' => 'fiksi',
             'rating' => '3',
+            'tgl_masuk' => now(),
+            'induk' => 150735
         ], [
             'judul' => 'Pemrograman Web 2',
             'penulis' => 'Tono',

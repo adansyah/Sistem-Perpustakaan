@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('penulis');
+            $table->integer('induk');
             $table->string('penerbit');
+            $table->date('tgl_masuk');
             $table->integer('tahun');
             $table->enum('kategori', ['fiksi', 'non'])->default('fiksi');
             $table->integer('jumlah_eksemplar')->default(1);

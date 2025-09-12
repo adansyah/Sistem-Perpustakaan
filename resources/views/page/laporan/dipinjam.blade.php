@@ -9,6 +9,26 @@
                     <h1 class="text-3xl font-bold text-white mb-2">Laporan Pinjaman</h1>
                     <p class="text-gray-400">Kelola Laporan Perpustakaan</p>
                 </div>
+                <div class="flex gap-3">
+                    <a href="{{ route('laporan.pinjam.excel') }}"
+                        class="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Excel
+                    </a>
+                    <a href="{{ route('laporan.pinjam.pdf') }}"
+                        class="mt-4 md:mt-0 bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-emerald-900/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        PDF
+                    </a>
+                </div>
 
             </div>
             <!-- Search & Filters -->

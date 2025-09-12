@@ -48,12 +48,14 @@ class BukuController extends Controller
             }
 
             $buku = Book::create([
+                'induk'     => $validated['induk'],
                 'judul'     => $validated['judul'],
                 'penulis'     => $validated['penulis'],
                 'penerbit'    => $validated['penerbit'],
                 'tahun'  => $validated['tahun'],
                 'kategori'       => $validated['kategori'],
                 'rating'       => $validated['rating'],
+                'tgl_masuk'       => $validated['tgl_masuk'],
                 'jumlah_eksemplar' => $validated['jumlah_eksemplar'],
                 'file'         => $filePath ?? null,
 
