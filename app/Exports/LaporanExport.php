@@ -14,11 +14,11 @@ class LaporanExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return Book::select('id', 'induk', 'judul', 'penulis', 'penerbit', 'tahun')->get();
+        return Book::select('id', 'induk', 'judul', 'penulis', 'penerbit', 'kategori', 'tahun', 'jumlah_eksemplar')->get();
     }
 
     public function headings(): array
     {
-        return ["ID", "No Induk", "Judul", "Penulis", "Penerbit", "Tahun"];
+        return ["ID", "No Induk", "Judul", "Penulis", "Penerbit", "Kategori", "Tahun", "Jumlah Buku"];
     }
 }

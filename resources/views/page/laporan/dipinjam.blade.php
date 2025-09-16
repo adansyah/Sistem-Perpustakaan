@@ -68,6 +68,7 @@
                                 <th class="py-3 px-4">Buku</th>
                                 <th class="py-3 px-4">Jumlah</th>
                                 <th class="py-3 px-4">Tanggal Pinjam</th>
+                                <th class="py-3 px-4">Tanggal Kembali</th>
 
 
                             </tr>
@@ -82,6 +83,9 @@
                                         <td class="py-3 px-4 text-gray-200 font-medium">{{ $item->jumlah }}</td>
                                         <td class="py-3 px-4 text-gray-200">
                                             {{ $loan->tanggal_pinjam ? \Carbon\Carbon::parse($loan->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
+                                        </td>
+                                        <td class="py-3 px-4 text-gray-200">
+                                            {{ $loan->tanggal_kembali ? \Carbon\Carbon::parse($loan->tanggal_kembali)->translatedFormat('d F Y') : '-' }}
                                         </td>
                                     </tr>
                                 @empty

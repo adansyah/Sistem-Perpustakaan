@@ -55,6 +55,7 @@
                             <tr class="bg-gray-900/70 text-gray-400 text-sm text-center font-medium">
                                 <th class="py-3 px-4">No</th>
                                 <th class="py-3 px-4">Anggota</th>
+                                <th class="py-3 px-4">Buku</th>
                                 <th class="py-3 px-4">Tanggal Pinjam</th>
                                 <th class="py-3 px-4">Tanggal Kembali</th>
                                 <th class="py-3 px-4">Status</th>
@@ -69,6 +70,8 @@
                                         {{ $loop->iteration }}
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">{{ $item->anggota->nama }}</td>
+                                    <td class="py-3 px-4 text-gray-300">
+                                        {{ $item->details->pluck('book.judul')->implode(', ') }}</td>
                                     <td class="py-3 px-4 text-gray-200 font-medium">
                                         {{ $item->tanggal_pinjam ? \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
                                     </td>

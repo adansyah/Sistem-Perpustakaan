@@ -21,7 +21,7 @@ class PinjamExport implements FromCollection, WithHeadings, WithMapping
 
     public function headings(): array
     {
-        return ["No", "Anggota", "Buku", "jumlah", "Tanggal Pinjam"];
+        return ["No", "Anggota", "Buku", "jumlah", "Tanggal Pinjam", "Tanggal Kembali"];
     }
 
     public function map($loan): array
@@ -33,6 +33,9 @@ class PinjamExport implements FromCollection, WithHeadings, WithMapping
             $loan->details->sum('jumlah'),
             $loan->tanggal_pinjam
                 ? \Carbon\Carbon::parse($loan->tanggal_pinjam)->translatedFormat('d F Y')
+                : '-',
+            $loan->tanggal_kembali
+                ? \Carbon\Carbon::parse($loan->tanggal_kembali)->translatedFormat('d F Y')
                 : '-',
         ];
     }

@@ -14,8 +14,6 @@ class Book extends Model
         'tahun',
         'kategori',
         'jumlah_eksemplar',
-        'file',
-        'rating',
         'tgl_masuk'
     ];
 

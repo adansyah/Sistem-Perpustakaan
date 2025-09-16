@@ -92,8 +92,7 @@
                                 <th class="py-3 px-4">Tahun</th>
                                 <th class="py-3 px-4">Tanggal Masuk</th>
                                 <th class="py-3 px-4">Kategori</th>
-                                <th class="py-3 px-4">File</th>
-                                <th class="py-3 px-4">Rating</th>
+                                <th class="py-3 px-4">Jumlah Buku</th>
                                 <th class="py-3 px-4">Action</th>
 
                             </tr>
@@ -118,28 +117,21 @@
                                         {{ $item->tgl_masuk ? \Carbon\Carbon::parse($item->tgl_masuk)->translatedFormat('d F Y') : '-' }}
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">
-                                        @if ($item->kategori == 'fiksi')
-                                            Fiksi
-                                        @elseif ($item->kategori == 'non')
-                                            Non Fiksi
+                                        @if ($item->kategori == 'dongen')
+                                            Dongeng
+                                        @elseif ($item->kategori == 'cerpen')
+                                            cerpen
+                                        @elseif ($item->kategori == 'novel')
+                                            Novel
+                                        @elseif ($item->kategori == 'komik')
+                                            Komik
+                                        @elseif ($item->kategori == 'lainnya')
+                                            Lainnya
                                         @endif
                                     </td>
                                     <td class="py-3 px-4">
-                                        <a href="{{ asset('storage/' . $item->file) }}"
-                                            class="text-blue-500 underline hover:text-blue-700">
-                                            Lihat File
-                                        </a>
+                                        {{ $item->jumlah_eksemplar }}
                                     </td>
-                                    <td class="py-5 px-4 flex items-center gap-1 justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            class="h-5 w-5 text-amber-300" stroke-width="1.5" stroke="currentColor"
-                                            class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                        </svg>
-                                        {{ $item->rating }}
-                                    </td>
-
                                     <td class="py-3 px-4">
                                         <div class="flex gap-2 justify-center">
 
@@ -160,8 +152,8 @@
                                                 <button type="submit"
                                                     class="p-2 bg-rose-600/20 hover:bg-rose-600/40 text-rose-400 hover:text-rose-300 rounded-lg transition-colors"
                                                     title="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

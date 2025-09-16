@@ -102,7 +102,7 @@ class LaporanController extends Controller
     }
     public function PdfBuku()
     {
-        $buku = Book::select('id', 'induk', 'judul', 'penulis', 'penerbit', 'tahun')->get();
+        $buku = Book::select('id', 'induk', 'judul', 'penulis', 'penerbit', 'kategori', 'tahun', 'jumlah_eksemplar')->get();
         $pdf = Pdf::loadView('page.laporan.export.exportbuku', compact('buku'));
         return $pdf->download('daftar_buku.pdf');
     }

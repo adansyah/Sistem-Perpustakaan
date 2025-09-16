@@ -16,10 +16,8 @@ class BukuRequest extends FormRequest
             'penerbit' => 'required',
             'tahun' => 'required',
             'tgl_masuk' => 'required',
-            'kategori' => 'required|in:fiksi,non',
+            'kategori' => 'required|in:dongeng,cerpen,novel,komik,lainnya',
             'jumlah_eksemplar' => 'required|min:0',
-            'file' => 'nullable|mimes:pdf,doc,docx|max:2048',
-            'rating' => 'required|in:1,2,3,4,5',
         ];
     }
 }

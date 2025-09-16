@@ -41,12 +41,6 @@ class BukuController extends Controller
         try {
             $validated = $request->validated();
 
-            if ($request->hasFile('file')) {
-                $file      = $request->file('file');
-                $fileName  = time() . '-' . $file->getClientOriginalName();
-                $filePath  = $file->storeAs('buku', $fileName, 'public');
-            }
-
             $buku = Book::create([
                 'induk'     => $validated['induk'],
                 'judul'     => $validated['judul'],
@@ -54,10 +48,8 @@ class BukuController extends Controller
                 'penerbit'    => $validated['penerbit'],
                 'tahun'  => $validated['tahun'],
                 'kategori'       => $validated['kategori'],
-                'rating'       => $validated['rating'],
                 'tgl_masuk'       => $validated['tgl_masuk'],
                 'jumlah_eksemplar' => $validated['jumlah_eksemplar'],
-                'file'         => $filePath ?? null,
 
             ]);
             return redirect()->route('buku.index')->with('success', 'Buku berhasil disimpan.');
@@ -93,16 +85,6 @@ class BukuController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('file')) {
-            if ($buku->file && Storage::disk('public')->exists($buku->file)) {
-                Storage::disk('public')->delete($buku->file);
-            }
-
-            $file = $request->file('file');
-            $fileName = time() . '-' . $file->getClientOriginalName();
-            $validated['file'] = $file->storeAs('buku', $fileName, 'public');
-        }
-
         $buku->update($validated);
 
         return redirect()->route('buku.index')->with('success', 'Data berhasil diperbarui.');
@@ -114,10 +96,6 @@ class BukuController extends Controller
     public function destroy($id)
     {
         $buku = Book::FindOrFail($id);
-
-        if ($buku->file && Storage::disk('public')->exists($buku->file)) {
-            Storage::disk('public')->delete($buku->file);
-        }
 
         $buku->delete();
 

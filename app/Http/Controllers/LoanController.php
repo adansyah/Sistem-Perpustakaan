@@ -24,9 +24,10 @@ class LoanController extends Controller
         return view('page.loans.create', compact('anggota', 'books'));
     }
 
+
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'anggota_id'       => 'required|exists:anggotas,id',
             'tanggal_pinjam'   => 'required|date',
             'tanggal_kembali'  => 'nullable|date|after_or_equal:tanggal_pinjam',
@@ -36,29 +37,48 @@ class LoanController extends Controller
             'jumlah.*'         => 'integer|min:1',
         ]);
 
-        DB::transaction(function () use ($request) {
+        try {
+            DB::beginTransaction();
+
+            // Buat loan
             $loan = Loan::create([
-                'anggota_id'      => $request->anggota_id,
-                'tanggal_pinjam'  => $request->tanggal_pinjam,
-                'tanggal_kembali' => $request->tanggal_kembali,
+                'anggota_id'      => $validated['anggota_id'],
+                'tanggal_pinjam'  => $validated['tanggal_pinjam'],
+                'tanggal_kembali' => $validated['tanggal_kembali'],
                 'status'          => 'dipinjam',
             ]);
 
-            foreach ($request->book_id as $i => $bookId) {
+            foreach ($validated['book_id'] as $index => $bookId) {
+                $jumlah = $validated['jumlah'][$index];
+                $book   = Book::findOrFail($bookId);
+
+                if ($book->jumlah_eksemplar < $jumlah) {
+                    // Batalkan semua proses
+                    DB::rollBack();
+                    return redirect()->route('loans.index')
+                        ->with('error', "Stok buku '{$book->judul}' tidak mencukupi.");
+                }
+
+                // Kurangi stok
+                $book->decrement('jumlah_eksemplar', $jumlah);
+
                 LoanDetail::create([
                     'loan_id' => $loan->id,
                     'book_id' => $bookId,
-                    'jumlah'  => $request->jumlah[$i],
+                    'jumlah'  => $jumlah,
                 ]);
-
-                $book = Book::find($bookId);
-                $book->jumlah_eksemplar -= $request->jumlah[$i];
-                $book->save();
             }
-        });
 
-        return redirect()->route('loans.index')->with('success', 'Transaksi peminjaman berhasil dibuat.');
+            DB::commit();
+            return redirect()->route('loans.index')->with('success', 'Peminjaman berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('loans.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
+
+
+
 
     public function show($id)
     {

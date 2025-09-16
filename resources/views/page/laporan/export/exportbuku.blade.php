@@ -44,7 +44,9 @@
                 <th>Judul</th>
                 <th>Penulis</th>
                 <th>Penerbit</th>
+                <th>Kategori</th>
                 <th>Tahun</th>
+                <th>Jumlah Buku</th>
             </tr>
         </thead>
         <tbody>
@@ -55,7 +57,9 @@
                     <td>{{ $item->judul }}</td>
                     <td>{{ $item->penulis }}</td>
                     <td>{{ $item->penerbit }}</td>
+                    <td>{{ $item->kategori }}</td>
                     <td>{{ $item->tahun }}</td>
+                    <td>{{ $item->jumlah_eksemplar }}</td>
                 </tr>
             @endforeach
         </tbody>

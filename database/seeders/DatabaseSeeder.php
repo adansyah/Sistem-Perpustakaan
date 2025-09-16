@@ -28,17 +28,9 @@ class DatabaseSeeder extends Seeder
             'jumlah_eksemplar' => 10,
             'penerbit' => 'Ilham',
             'tahun' => 2024,
-            'kategori' => 'fiksi',
-            'rating' => '3',
+            'kategori' => 'lainnya',
             'tgl_masuk' => now(),
             'induk' => 150735
-        ], [
-            'judul' => 'Pemrograman Web 2',
-            'penulis' => 'Tono',
-            'jumlah_eksemplar' => 1,
-            'penerbit' => 'Kipli',
-            'tahun' => 2024,
-            'kategori' => 'fiksi',
         ]);
 
         Anggota::create([

@@ -66,6 +66,7 @@
                             <tr class="bg-gray-900/70 text-gray-400 text-sm text-center font-medium">
                                 <th class="py-3 px-4">No</th>
                                 <th class="py-3 px-4">Anggota</th>
+                                <th class="py-3 px-4">Buku</th>
                                 <th class="py-3 px-4">Tanggal Pinjaman</th>
                                 <th class="py-3 px-4">Tanggal Pengembalian</th>
                                 <th class="py-3 px-4">Status</th>
@@ -78,6 +79,8 @@
                                 <tr class="hover:bg-gray-700/30 transition-colors duration-150 text-center text-sm">
                                     <td class="py-3 px-4">{{ $loop->iteration }}</td>
                                     <td class="py-3 px-4 text-gray-300">{{ $loan->anggota->nama }}</td>
+                                    <td class="py-3 px-4 text-gray-300">
+                                        {{ $loan->Details->pluck('book.judul')->implode(',') }}</td>
                                     <td class="py-3 px-4 text-gray-200">
                                         {{ $loan->tanggal_pinjam ? \Carbon\Carbon::parse($loan->tanggal_pinjam)->translatedFormat('d F Y') : '-' }}
                                     </td>

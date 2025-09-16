@@ -68,8 +68,9 @@
                                 <th class="py-3 px-4">Judul</th>
                                 <th class="py-3 px-4">Penulis</th>
                                 <th class="py-3 px-4">Penerbit</th>
+                                <th class="py-3 px-4">Kategori</th>
                                 <th class="py-3 px-4">Tahun</th>
-
+                                <th class="py-3 px-4">Jumlah Buku</th>
 
                             </tr>
                         </thead>
@@ -81,7 +82,22 @@
                                     <td class="py-3 px-4 text-gray-300">{{ $item->judul }}</td>
                                     <td class="py-3 px-4 text-gray-200"> {{ $item->penulis }}</td>
                                     <td class="py-3 px-4 text-gray-200"> {{ $item->penerbit }}</td>
+                                    <td class="py-3 px-4 text-gray-200">
+                                        @if ($item->kategori == 'dongen')
+                                            Dongeng
+                                        @elseif ($item->kategori == 'cerpen')
+                                            cerpen
+                                        @elseif ($item->kategori == 'novel')
+                                            Novel
+                                        @elseif ($item->kategori == 'komik')
+                                            Komik
+                                        @elseif ($item->kategori == 'lainnya')
+                                            Lainnya
+                                        @endif
+                                    </td>
+                                    <td class="py-3 px-4 text-gray-200"> {{ $item->jumlah_eksemplar }}</td>
                                     <td class="py-3 px-4 text-gray-200"> {{ $item->tahun }}</td>
+
 
                                 </tr>
                             @empty

@@ -127,6 +127,12 @@
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>
+
+
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
                             <div>
                                 <label for="tahun" class="block text-sm font-medium text-gray-300 mb-1">Tahun <span
                                         class="text-rose-400">*</span></label>
@@ -149,20 +155,21 @@
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>
-
-                        </div>
-
-                        <!-- Right Column -->
-                        <div class="space-y-6">
                             <div>
-                                <h2 class="block text-md font-medium text-gray-300 mb-1">Kategori Buku</h2>
-                                <select name="kategori" required class="w-full p-3 rounded bg-gray-800 text-white mb-4"
+                                <h2 class="block text-md font-medium text-gray-300 ">Kategori Buku</h2>
+                                <select name="kategori" required class="w-full p-3 rounded bg-gray-800 text-white"
                                     required>
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="fiksi">
-                                        Fiksi</option>
-                                    <option value="non">
-                                        Non Fiksi</option>
+                                    <option value="dongeng">
+                                        Dongeng</option>
+                                    <option value="cerpen">
+                                        Cerpen</option>
+                                    <option value="novel">
+                                        Novel</option>
+                                    <option value="komik">
+                                        Komik</option>
+                                    <option value="lainnya">
+                                        Lainnya</option>
                                 </select>
                             </div>
                             <div>
@@ -178,48 +185,6 @@
                                     <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div>
-                                <label for="rating" class="block text-sm font-medium text-gray-300 mb-1">rating
-                                    <span class="text-rose-400">*</span></label>
-                                <input type="number" id="rating" name="rating" value="{{ old('rating') }}"
-                                    required min="0" max="5"
-                                    class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                    placeholder="Rating 1-5">
-
-                                @error('rating')
-                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <!-- file Upload -->
-                            <div>
-                                <label for="file" class="block text-sm font-medium text-gray-300 mb-1">Upload File
-                                    (Upload)</label>
-                                <div
-                                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-lg">
-                                    <div class="space-y-1 text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                            viewBox="0 0 48 48" aria-hidden="true">
-                                            <path
-                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        <div class="flex text-sm text-gray-400">
-                                            <label for="file"
-                                                class="relative cursor-pointer bg-gray-800 rounded-md font-medium text-cyan-400 hover:text-cyan-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
-                                                <span class="px-2">Upload a file</span>
-                                                <input id="file" name="file" type="file" class="sr-only">
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">PDF, DOCX,Max 3MB</p>
-                                    </div>
-                                </div>
-                                @error('file')
-                                    <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
-                                @enderror
-                            </div>
-
 
                         </div>
                     </div>

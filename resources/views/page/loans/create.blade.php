@@ -123,8 +123,7 @@
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label for="tgl_surat" class="block text-sm font-medium text-gray-300 mb-1">Tanggal
-                                        Surat
+                                    <label for="tgl_surat" class="block text-sm font-medium text-gray-300 mb-1">Buku
                                         <span class="text-rose-400">*</span></label>
                                     <select name="book_id[]" class="w-full p-3 rounded bg-gray-800 text-white mb-4"
                                         required>

@@ -20,7 +20,10 @@ class Loan extends Model
         return $this->belongsTo(Anggota::class);
     }
 
-
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 
     public function Details()
     {
