@@ -1,5 +1,5 @@
 # Laravel 12 + Tailwind
-Aplikasi Persuratan PKK menggunakan Laravel 12 dan Tailwind.
+Aplikasi Perpustakaan menggunakan Laravel 12 dan Tailwind.
 
 
 ## Langkah Instalasi
@@ -12,6 +12,8 @@ Aplikasi Persuratan PKK menggunakan Laravel 12 dan Tailwind.
 7. jalankan - `php artisan migrate --seed`
 8. jalankan - `php arisan storage:link`
 9. jalankaan server laravel - `php artisan serve`
+10. email = admin@gmail.com
+11. pw = 123
 
 
 
