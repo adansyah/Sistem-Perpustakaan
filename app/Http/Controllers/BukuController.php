@@ -76,9 +76,7 @@ class BukuController extends Controller
         return view('page.buku.edit', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(BukuRequest $request,  $id)
     {
         $buku = Book::findOrFail($id);
@@ -90,9 +88,7 @@ class BukuController extends Controller
         return redirect()->route('buku.index')->with('success', 'Data berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($id)
     {
         $buku = Book::FindOrFail($id);
